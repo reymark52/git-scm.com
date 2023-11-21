@@ -1,0 +1,31 @@
+git-mktree(1)
+=============
+
+名称
+--
+git-mktree - 从 ls-tree 格式化文本构建树对象
+
+
+概述
+--
+[verse]
+'git mktree' [-z] [--missing] [--batch]
+
+描述
+--
+以非递归的 `ls-tree` 输出格式读取标准输入，并创建一个树形对象。 树条目的顺序由 mktree 规范化，所以不需要对输入进行预先排序。 建立的树形对象的对象名称被写入标准输出。
+
+选项
+--
+-z::
+	读取以 NUL 结尾的 `ls-tree -z` 输出。
+
+--missing::
+	Allow missing objects. The default behaviour (without this option) is to verify that each tree entry's hash identifies an existing object. This option has no effect on the treatment of gitlink entries (aka "submodules") which are always allowed to be missing.
+
+--batch::
+	Allow building of more than one tree object before exiting. Each tree is separated by a single blank line. The final newline is optional. Note - if the `-z` option is used, lines are terminated with NUL.
+
+GIT
+---
+属于 linkgit:git[1] 文档
